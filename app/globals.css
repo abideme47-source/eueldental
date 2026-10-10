@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Figma: Manrope (headings/nav/buttons) + Archivo (body). */
+@supports (font-variation-settings: normal) {
+  html {
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Headings, nav, and buttons use Manrope; body copy uses Archivo. */
+body {
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ nav,
+ .font-manrope {
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.font-archivo {
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Exact Figma color tokens reused across the page. */
+.bg-brand {
+  background-color: #3267ff;
+}
+.bg-brand-light {
+  background-color: #f1f8ff;
+}
+.bg-brand-outline {
+  background-color: #98b3ff;
+}
+.bg-cta {
+  background-color: #1644ef;
+}
+.bg-dark {
+  background-color: #000a2d;
+}
+.text-brand {
+  color: #3267ff;
+}
+.text-dark {
+  color: #000a2d;
+}
+.text-secondary {
+  color: #636571;
+}
+.text-brand-outline {
+  color: #98b3ff;
+}
+.border-brand {
+  border-color: #3267ff;
+}
+.border-input {
+  border-color: #e7e7e7;
+}
+.border-divider {
+  border-color: #eeeeee;
+}

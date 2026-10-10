@@ -1,0 +1,14 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "mcp": {
+    "figma": {
+      "type": "local",
+      "command": [
+        "node",
+        "C:\\Users\\hp\\Documents\\my-website\\.kilo\\figma-bridge\\server.js"
+      ],
+      "enabled": true,
+      "timeout": 30000
+    }
+  }
+}

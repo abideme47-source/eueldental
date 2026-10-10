@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+build
+.DS_Store
+*.pem
+npm-debug.log*
+.env*
+!.env.example
+next-env.d.ts
+tsconfig.tsbuildinfo
+
+# Kilo local state and secrets
+.kilo/figma-token.txt
+.kilo/figma-bridge/cache
+.kilo/figma-bridge/usage.json
+.kilo/figma-bridge/preview.png
