@@ -1,252 +1,182 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import Header from "@/components/dental/Header";
 import Footer from "@/components/dental/Footer";
-import Button from "@/components/dental/Button";
-import SectionHeader from "@/components/dental/SectionHeader";
-import IconBox from "@/components/dental/IconBox";
-import FeatureItem from "@/components/dental/FeatureItem";
-import ServiceCard from "@/components/dental/ServiceCard";
-import TestimonialCard from "@/components/dental/TestimonialCard";
-import BlogCard from "@/components/dental/BlogCard";
+import WhatsAppAppointmentForm from "@/components/dental/WhatsAppAppointmentForm";
 
-const docRight = "/figma/hero-doctor.png";
-const docCircle = "/figma/circle-hero.png";
-const docAbout = "/figma/about-doctor.png";
-const svc = [
-  "/figma/svc-1.png",
-  "/figma/svc-2.png",
-  "/figma/svc-3.png",
-  "/figma/svc-4.png",
-  "/figma/svc-5.png",
-  "/figma/svc-6.png",
+const asset = "/figma/assets/";
+const clinicMapSearch = encodeURIComponent("Dr Euel Lewi Speciality Dental Clinic, Getu Commercial Center, Bole, Addis Ababa, Ethiopia");
+
+const highlights = [
+  { image: "icon-record.png", title: "Comfortable Visits", copy: "Gentle care in a calm, clean clinic, so you feel relaxed from start to finish." },
+  { image: "icon-tools.png", title: "Experienced Dentists", copy: "Skilled specialists who explain every step and treat kids, teens, and adults." },
+  { image: "icon-chair.png", title: "Satisfactory Service", copy: "Friendly staff and clear treatment plans, with follow-up care after every visit." },
 ];
-const blog = ["/figma/blog-1.png", "/figma/blog-2.png", "/figma/blog-3.png"];
+
+const services = [
+  { image: "service-decay.png", icon: "service-icon-decay.png", title: "Tooth Decay", copy: "We clean the decay and repair the tooth before it gets worse." },
+  { image: "service-yellow.png", icon: "service-icon-yellow.png", title: "Yellow Teeth", copy: "We clean away stains so your teeth look bright." },
+  { image: "service-crooked.png", icon: "service-icon-crooked.png", title: "Crooked Teeth", copy: "Braces help your teeth grow straight and look great." },
+  { image: "service-pain.png", icon: "service-icon-pain.png", title: "Tooth Pain", copy: "We find the cause and treat it to stop your pain." },
+  { image: "service-broken.png", icon: "service-icon-broken.png", title: "Broken Tooth", copy: "We fix it, or take it out gently if needed." },
+  { image: "service-missing.png", icon: "service-icon-missing.png", title: "Missing Teeth", copy: "We replace them with teeth that look and feel natural." },
+];
+
+const articles = [
+  { image: "blog-gums.png", category: "Gum", title: "Bleeding Gums? Don't Ignore the Warning", copy: "Bleeding gums are a warning sign. Brush gently, clean between your teeth, and see a dentist if it keeps happening." },
+  { image: "blog-sensitive.png", category: "Sensitive Teeth", title: "Ouch! Why Cold Drinks Make Teeth Hurt?", copy: "Sharp pain from cold or hot food can mean worn teeth or a small hole. A dentist can find the cause and help." },
+  { image: "blog-breath.png", category: "Fresh Breath", title: "Bad Breath Getting You Down? Here Is How to Get Fresh Again", copy: "Most bad breath starts in the mouth. Brush your teeth and tongue, drink water, and see us if the smell stays." },
+];
+
+const stats = [
+  { image: "stat-tooth.png", value: "1,200+", label: "Happy Client" },
+  { image: "stat-clinic.png", value: "8+", label: "Year Experience" },
+  { image: "stat-schedule.png", value: "200+", label: "Online Appointment" },
+  { image: "stat-dentist.png", value: "All Ages", label: "Welcome" },
+];
+
+const checks = ["Modern Equipment", "Comfortable Clinic", "Easy Online Appointment", "Always Monitored"];
+
+function ActionLink({ children, href, secondary = false }: { children: React.ReactNode; href: string; secondary?: boolean }) {
+  return (
+    <Link href={href} className={`inline-flex min-h-[52px] items-center justify-center rounded-[4px] px-[28px] font-manrope text-[15px] font-bold leading-[24px] transition-colors ${secondary ? "border border-[#3267ff] bg-white/50 text-brand hover:bg-[#f1f8ff]" : "bg-brand text-white hover:bg-[#1644ef]"}`}>
+      {children}
+    </Link>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <div className="w-full overflow-hidden bg-white text-dark">
       <Header />
-
-      {/* HERO — gradient 1920x771, left text + right doctor image (spec 1:40) */}
-      <section className="relative flex h-[771px] w-full items-center bg-gradient-to-r from-[#3267FF] to-[#1644EF]">
-        <div className="mx-auto flex w-[1240px] items-center justify-between px-[60px]">
-          <div className="w-[580px]">
-            <div className="mb-[24px] inline-flex h-[36px] items-center rounded-[4px] border border-[#eeeeee] bg-white/10 px-[16px] font-manrope text-[14px] font-bold leading-[22.4px] text-white">
-              Modern Dental Care
+      <main>
+        <section id="home" className="relative overflow-hidden bg-white lg:bg-[linear-gradient(to_right,#ffffff_0%,#ffffff_50%,#f1f8ff_50%,#f1f8ff_100%)]">
+          <div className="mx-auto grid min-h-[771px] max-w-[1240px] items-center gap-0 px-5 sm:px-8 lg:grid-cols-2 lg:px-0">
+            <div className="relative z-10 max-w-[594px] py-16 lg:translate-y-[36px] lg:pl-[10px]">
+              <h1 className="font-manrope text-[38px] font-extrabold leading-[1.1] text-dark sm:text-[54px] lg:text-[68px] lg:leading-[74.8px]">
+                Helping You to<br />Bring Back Your<br /><span className="relative inline-block">Happy Smile<img src={`${asset}hero-draw-line.png`} alt="" className="absolute right-[-27px] top-[8px] h-[33px] w-[30px] rotate-[11deg]" /></span>
+              </h1>
+              <p className="mt-6 max-w-[500px] font-archivo text-[16px] leading-[25.6px] text-secondary">Caring dentists, modern treatment, and a comfortable visit every time.</p>
             </div>
-            <h1 className="font-manrope text-[52px] font-extrabold leading-[57.2px] tracking-[-1.5px] text-white">
-              The Best Dental Clinic<br />That You Can Trust
-            </h1>
-            <p className="mt-[24px] font-archivo text-[16px] leading-[25.6px] text-[#f1f8ff]">
-              Discover the power of modern dentistry with our expert team and
-              state-of-the-art technology for a healthier, more confident you.
-            </p>
-            <div className="mt-[40px] flex items-center gap-[24px]">
-              <Button variant="primary">Book Consultation</Button>
-              <Button variant="outline" className="border-[#98b3ff] text-[#98b3ff] hover:bg-white/10">
-                Watch Video
-              </Button>
-            </div>
-          </div>
-
-          <div className="relative h-[771px] w-[434px] -mr-[60px]">
-            <img
-              src={docCircle}
-              alt=""
-              className="absolute bottom-[60px] right-0 h-[231px] w-[384px] object-cover opacity-90"
-            />
-            <img
-              src={docRight}
-              alt="Dentist"
-              className="absolute bottom-0 right-0 h-[550px] w-[434px] object-contain"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 3 floating feature tiles (spec 1:113) */}
-      <div className="mx-auto mb-[-40px] flex w-[1240px] justify-between gap-[40px] px-[60px]">
-        <IconBox title="Affordable Price" desc="Transparent pricing for every budget." />
-        <IconBox title="Professional Dentist" desc="Experienced, certified dental professionals." />
-        <IconBox title="Satisfactory Service" desc="Guaranteed care and satisfaction." />
-      </div>
-
-      {/* FEATURE STRIP — 1920x214 #F1F8FF (spec 1:217) */}
-      <section className="h-[214px] w-full bg-[#f1f8ff] py-[40px]">
-        <div className="mx-auto flex w-[1240px] items-center justify-center gap-[60px] px-[60px]">
-          <FeatureItem label="Emergency Care" />
-          <FeatureItem label="Safe Treatment" />
-          <FeatureItem label="Specialist Team" />
-          <FeatureItem label="24/7 Support" />
-        </div>
-      </section>
-
-      {/* ABOUT — dark 1920x740, 50/50 split (spec 1:255) */}
-      <section className="flex h-[740px] w-full items-center bg-[#000A2D] font-archivo">
-        <div className="mx-auto flex w-[1240px] items-center justify-between px-[60px]">
-          <div className="w-[580px]">
-            <span className="mb-[20px] inline-flex h-[36px] items-center rounded-[4px] border border-[#eeeeee] bg-[#f1f8ff] px-[16px] font-manrope text-[14px] font-bold leading-[22.4px] text-brand">
-              More About Us
-            </span>
-            <h2 className="mt-[20px] font-manrope text-[52px] font-extrabold leading-[57.2px] tracking-[-1.5px] text-white">
-              The Best Dental Clinic<br />That You Can Trust
-            </h2>
-            <p className="mt-[24px] max-w-[500px] text-[#e4e7ec]">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-              commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-              penatibus et magnis dis parturient.
-            </p>
-
-            <div className="mt-[40px] space-y-[24px]">
-              <div>
-                <span className="mb-[8px] block font-manrope text-[18px] font-extrabold leading-[18px] text-white">
-                  Dental and Mouth Care
-                </span>
-                <div className="h-[10px] w-full rounded-[4px] bg-[#f1f8ff]" />
-              </div>
-              <div>
-                <span className="mb-[8px] block font-manrope text-[18px] font-extrabold leading-[18px] text-white">
-                  Cosmetic Treatment
-                </span>
-                <div className="h-[10px] w-full rounded-[4px] bg-[#f1f8ff]" />
+            <div className="relative mx-auto h-[470px] w-full max-w-[620px] overflow-visible bg-[#f1f8ff] lg:h-[771px] lg:bg-transparent">
+              <img src={`${asset}hero-backdrop.png`} alt="" className="absolute right-[-50px] top-[calc(50%+105px)] h-[82%] max-h-[559px] w-[79%] max-w-[490px] -translate-y-1/2 object-contain" />
+              <img src={`${asset}hero-circle.png`} alt="" className="absolute left-[calc(50%+64px)] top-[calc(50%+52px)] z-10 w-[96%] max-w-[590px] -translate-x-1/2 -translate-y-1/2 object-contain" />
+              <img src={`${asset}hero-dentist.png`} alt="Dentist holding a toothbrush and dental model" className="absolute left-[calc(50%+78.5px)] top-[calc(50%+19.9px)] h-[96%] max-h-[732px] w-[91%] max-w-[561px] -translate-x-1/2 -translate-y-1/2 object-cover" />
+              <div className="absolute left-5 top-6 z-20 h-[151px] w-[269px] rounded-[4px] border border-white/70 bg-white/55 shadow-[3px_0_12px_rgba(32,145,255,0.13)] backdrop-blur-[2px] lg:left-[29px] lg:top-[198px]">
+                <div className="absolute left-5 top-5 flex items-center">
+                  <span className="h-12 w-12 rounded-full border-4 border-white bg-brand" />
+                  <span className="-ml-[15px] h-12 w-12 rounded-full border-4 border-white bg-brand" />
+                  <span className="-ml-[15px] h-12 w-12 rounded-full border-4 border-white bg-brand" />
+                </div>
+                <p className="absolute left-[138px] top-[27px] font-manrope text-[42px] font-extrabold leading-[42px] text-dark">1200</p>
+                <span className="absolute left-[228px] top-[29px] flex h-7 w-7 items-center justify-center rounded-full bg-brand font-manrope text-[15px] font-bold text-white">+</span>
+                <p className="absolute left-5 top-[91px] font-manrope text-[15px] font-bold leading-[20px] text-dark">Satisfied Customer</p>
+                <p className="absolute left-5 top-[116px] font-archivo text-[13px] leading-[20px] text-secondary">Having Great Reviews</p>
               </div>
             </div>
+          </div>
+          <WhatsAppAppointmentForm id="appointment" className="relative z-20 mx-auto -mt-28 grid w-[calc(100%-2.5rem)] max-w-[1220px] gap-4 rounded-[4px] bg-white p-5 shadow-[0_4px_20px_rgba(0,60,179,0.14)] sm:px-7 lg:-mt-32 md:grid-cols-[repeat(3,minmax(0,1fr))_auto] md:items-end">
+            <h2 className="font-manrope text-[18px] font-bold leading-6 md:col-span-full">Book An Appointment Right Now</h2>
+            <label className="font-manrope text-[12px] font-bold">Your Name<input name="name" autoComplete="name" className="mt-2 h-12 w-full rounded-[4px] border border-input px-4 font-archivo text-[14px] font-normal" placeholder="e.g. Abebech" /></label>
+            <label className="font-manrope text-[12px] font-bold">Phone Number<input name="phone" type="tel" autoComplete="tel" className="mt-2 h-12 w-full rounded-[4px] border border-input px-4 font-archivo text-[14px] font-normal" placeholder="e.g. 0912 345 678" /></label>
+            <label className="font-manrope text-[12px] font-bold">Date<input name="date" type="date" className="mt-2 h-12 w-full rounded-[4px] border border-input px-4 font-archivo text-[14px] font-normal" /></label>
+            <button type="submit" className="min-h-12 rounded-[4px] bg-brand px-6 font-manrope text-[14px] font-bold text-white hover:bg-[#1644ef]">Book Now</button>
+          </WhatsAppAppointmentForm>
+        </section>
 
-            <div className="mt-[40px] flex items-center gap-[24px]">
-              <Button variant="primary">Learn More</Button>
-              <Button variant="brand-fill">Make an Appointment</Button>
+        <section aria-label="Clinic benefits" className="mx-auto grid max-w-[1220px] gap-9 px-5 py-16 sm:px-8 md:grid-cols-3 lg:px-0 lg:py-[70px]">
+          {highlights.map((item) => <article key={item.title} className="text-center"><div className="mx-auto flex h-[70px] w-[70px] items-center justify-center rounded-[4px] border border-[#e4ebff] bg-[#f1f8ff]"><img src={`${asset}${item.image}`} alt="" className="h-12 w-12 object-contain" /></div><h2 className="mt-5 font-manrope text-[22px] font-bold leading-7">{item.title}</h2><p className="mx-auto mt-3 max-w-[285px] font-archivo text-[15px] leading-[25px] text-secondary">{item.copy}</p></article>)}
+        </section>
+
+        <section id="about" className="mx-auto grid max-w-[1240px] items-center gap-12 px-5 py-16 sm:px-8 md:grid-cols-2 lg:gap-16 lg:px-0 lg:py-24">
+          <div className="relative mx-auto h-[520px] w-full max-w-[640px] sm:h-[620px]">
+            <img src={`${asset}about-backdrop.png`} alt="" className="absolute inset-0 h-full w-full object-contain" />
+            <img src={`${asset}about-circle.png`} alt="" className="absolute bottom-[7%] left-[8%] z-30 h-[76%] w-[74%] origin-bottom scale-[1.1] object-contain md:scale-[1.2] lg:scale-[1.25]" />
+            <div className="absolute inset-0 overflow-hidden">
+              <img src={`${asset}about-dentist.png`} alt="Dentist presenting a dental model" className="absolute left-[10%] top-0 z-20 h-[108%] w-[88%] origin-top scale-[1.5] object-contain object-top md:top-[-16px] md:scale-[1.75] lg:top-[-24px] lg:scale-[2]" />
+            </div>
+            <img src={`${asset}about-patient.png`} alt="Patient receiving gentle dental care" className="absolute left-[2%] top-[20%] z-40 h-[108px] w-[108px] rounded-full border-[6px] border-white object-cover shadow-[0_4px_18px_rgba(32,145,255,0.16)] sm:h-[118px] sm:w-[118px] sm:border-[7px] lg:h-[132px] lg:w-[132px]" />
+            <img src={`${asset}about-treatment.png`} alt="Dentist examining a patient" className="absolute bottom-[15%] right-[2%] z-40 h-[104px] w-[104px] rounded-full border-[6px] border-white object-cover shadow-[0_4px_18px_rgba(32,145,255,0.16)] sm:h-[114px] sm:w-[114px] sm:border-[7px] lg:h-[128px] lg:w-[128px]" />
+          </div>
+          <div>
+            <h2 className="max-w-[540px] font-manrope text-[38px] font-extrabold leading-[1.12] sm:text-[48px] lg:text-[52px]">The Best Dental Clinic That You Can Trust</h2>
+            <p className="mt-6 max-w-[500px] font-archivo text-[16px] leading-[25.6px] text-secondary">At Dr Euel Lewi Speciality Dental Clinic, we’re your partner in lifelong oral health. Our experienced, caring team makes every visit gentle, clear, and comfortable for patients of all ages.</p>
+            <p className="mt-4 max-w-[470px] font-archivo text-[16px] leading-[25.6px] text-secondary">Our clinic is calm, clean, and designed to help you relax. We take the time to listen to your concerns, because a comfortable patient is a confident patient.</p>
+            <ul className="mt-7 grid gap-x-5 gap-y-4 sm:grid-cols-2">{checks.map((item) => <li key={item} className="flex items-center gap-3 font-manrope text-[15px] font-bold"><span aria-hidden="true" className="text-[20px] leading-none text-brand">✓</span>{item}</li>)}</ul>
+            <div className="mt-8 flex flex-wrap gap-3"><ActionLink href="#services">Our Services</ActionLink><ActionLink href="#appointment" secondary>Make an Appointment</ActionLink></div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-[1240px] px-5 py-16 sm:px-8 lg:px-0 lg:py-20">
+          <div className="grid items-center gap-8 md:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+            <div>
+              <h2 className="font-manrope text-[38px] font-extrabold leading-[1.12] sm:text-[48px] lg:text-[52px]">Care You Can Count On</h2>
+              <p className="mt-5 font-archivo text-[16px] leading-[25.6px] text-secondary">We make dental care simple, gentle, and clear. From your first visit to your follow-up, our team is with you every step of the way.</p>
+              <div className="mt-7 space-y-5">{[{ title: "Gentle, Painless Care", width: "95%" }, { title: "Clear Treatment Plans", width: "87%" }].map((item) => <div key={item.title}><p className="mb-2 font-manrope text-[16px] font-bold">{item.title}</p><div className="h-[9px] rounded-[4px] bg-[#f1f8ff]"><div className="h-full rounded-[4px] bg-brand" style={{ width: item.width }} /></div></div>)}</div>
+            </div>
+            <div className="relative mx-auto h-[720px] w-full max-w-[520px] sm:h-[740px]">
+              <img src={`${asset}hero-circle.png`} alt="" className="absolute bottom-[12%] left-[11%] z-30 h-[76%] w-[78%] object-contain" />
+              <img src={`${asset}why-doctor.png`} alt="Dental professional ready to help" className="absolute left-0 top-0 z-20 h-[97%] w-[84%] object-contain object-top" />
+              <aside className="absolute left-[calc(100%_-_250px)] top-[71%] z-40 w-[250px] -translate-y-1/2 rounded-[4px] bg-white p-4 shadow-[0_4px_24px_rgba(0,60,179,0.13)] sm:left-[calc(100%_-_300px)] sm:w-[300px] sm:p-6 lg:left-[40%]">
+                <h3 className="font-manrope text-[26px] font-extrabold leading-tight">Book Your Consultation</h3>
+                <p className="mt-3 font-archivo text-[15px] leading-6 text-secondary">Not sure what you need? Call us or visit the clinic, and we’ll help you find the right treatment.</p>
+                <dl className="mt-7 space-y-4 border-t border-[#e9edf5] pt-5 font-archivo text-[15px]">
+                  <div className="flex justify-between gap-3"><dt className="font-manrope font-bold">Monday - Friday</dt><dd className="text-secondary">8AM - 10PM</dd></div>
+                  <div className="flex justify-between gap-3"><dt className="font-manrope font-bold">Saturday</dt><dd className="text-secondary">8AM - 10PM</dd></div>
+                  <div className="flex justify-between gap-3"><dt className="font-manrope font-bold">Sunday</dt><dd className="text-secondary">9AM - 5PM</dd></div>
+                </dl>
+                <a href="tel:+251910363238" className="mt-7 flex min-h-[54px] items-center justify-center rounded-[4px] bg-brand font-manrope text-[15px] font-bold text-white hover:bg-[#1644ef]">Call Now</a>
+              </aside>
             </div>
           </div>
+        </section>
 
-          <div className="w-[434px]">
-            <img src={docAbout} alt="Dentist" className="h-[740px] w-[434px] object-cover opacity-90" />
+        <section aria-label="Clinic facts" className="bg-[#f1f8ff]"><div className="mx-auto grid max-w-[1220px] gap-8 px-5 py-10 sm:px-8 sm:grid-cols-2 lg:grid-cols-4 lg:px-0 lg:py-[70px]">{stats.map((item) => <div key={item.label} className="flex items-center gap-5"><div className="flex h-[70px] w-[70px] shrink-0 items-center justify-center rounded-[4px] bg-brand"><img src={`${asset}${item.image}`} alt="" className="h-[50px] w-[50px] object-contain" /></div><div><p className="font-manrope text-[30px] font-extrabold leading-9">{item.value}</p><p className="mt-1 font-archivo text-[14px] leading-5 text-secondary">{item.label}</p></div></div>)}</div></section>
+
+        <section aria-label="Our clinic" className="mx-auto grid max-w-[1240px] gap-0 py-12 md:grid-cols-3 lg:py-20">
+          <div className="grid grid-cols-2 md:col-span-2"><div className="relative min-h-[260px] overflow-hidden bg-[#eef5ff] sm:min-h-[370px]"><img src={`${asset}mosaic-clinic.png`} alt="Modern dental clinic" className="absolute inset-0 h-full w-full object-cover" /></div><div className="flex min-h-[260px] flex-col items-center justify-center bg-brand px-7 py-10 text-center text-white sm:min-h-[370px]"><span aria-hidden="true" className="text-[40px]">✦</span><h2 className="mt-4 font-manrope text-[22px] font-bold">Modern Technology</h2><p className="mt-3 max-w-[280px] font-archivo text-[15px] leading-6">We use up-to-date equipment and proven techniques to give you precise, lasting results.</p></div><div className="flex min-h-[260px] flex-col items-center justify-center bg-[#1644ef] px-7 py-10 text-center text-white sm:min-h-[370px]"><span aria-hidden="true" className="text-[40px]">＋</span><h2 className="mt-4 font-manrope text-[22px] font-bold">Care for Every Age</h2><p className="mt-3 max-w-[280px] font-archivo text-[15px] leading-6">From children to grandparents, our team makes every visit calm, clear, and comfortable.</p></div><div className="relative min-h-[260px] overflow-hidden sm:min-h-[370px]"><img src={`${asset}mosaic-technology.png`} alt="Patient receiving care in our clinic" className="absolute inset-0 h-full w-full object-cover" /></div></div>
+          <div className="relative min-h-[380px] overflow-hidden md:min-h-full"><img src={`${asset}mosaic-care.png`} alt="Dental professional caring for a patient" className="absolute inset-0 h-full w-full object-cover" /></div>
+        </section>
+
+        <section id="services" className="mx-auto max-w-[1240px] px-5 py-16 sm:px-8 lg:px-0 lg:py-24"><div className="mx-auto mb-12 max-w-[650px] text-center"><h2 className="font-manrope text-[36px] font-extrabold leading-tight sm:text-[48px] lg:text-[52px]">What’s Bothering Your Smile?</h2><p className="mt-4 font-archivo text-[16px] leading-[25.6px] text-secondary">Tell us what you’re feeling and we’ll find the right treatment. Our dentists will examine you and explain your options.</p></div><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">{services.map((item) => <article key={item.title} className="relative h-[390px] overflow-hidden rounded-[4px] bg-[#eef5ff]"><img src={`${asset}${item.image}`} alt="" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute bottom-0 left-0 min-h-[176px] w-[min(280px,90%)] rounded-tr-[4px] bg-white p-5 sm:p-6"><div className="flex items-center gap-4"><img src={`${asset}${item.icon}`} alt="" className="h-10 w-10 object-contain" /><h3 className="font-manrope text-[19px] font-bold">{item.title}</h3></div><p className="mt-4 font-archivo text-[14px] leading-[22px] text-secondary">{item.copy}</p><Link href="#appointment" className="mt-4 inline-flex items-center gap-2 font-manrope text-[14px] font-bold text-brand hover:text-[#1644ef]">Get Consultation <span aria-hidden="true">→</span></Link></div></article>)}</div></section>
+
+        <section id="reviews" className="mx-auto grid max-w-[1240px] grid-cols-2 gap-x-3 gap-y-6 px-5 py-16 sm:px-8 md:grid-cols-[0.9fr_1.1fr] md:gap-10 lg:px-0 lg:py-24">
+          <div className="col-span-2 max-w-[470px] self-center md:col-span-1">
+            <h2 className="font-manrope text-[38px] font-extrabold leading-[1.12] sm:text-[48px] lg:text-[52px]">What Our Patients Say About Us</h2>
+            <div className="mt-8 hidden md:block"><ActionLink href="#appointment">Book Appointment</ActionLink></div>
           </div>
-        </div>
-      </section>
-
-      {/* SERVICES — "Best Quality Services" 6 cards (spec 1:285) */}
-      <section className="mx-auto w-[1240px] py-[80px]">
-        <div className="px-[60px]">
-          <SectionHeader
-            label="Our Services"
-            title="Best Quality Services"
-            subtitle="Our dedicated team delivers comprehensive, high-quality care."
-            align="left"
-          />
-        </div>
-        <div className="grid grid-cols-3 gap-[40px] px-[60px]">
-          <ServiceCard image={svc[0]} title="Teeth Cleaning" desc="Professional cleaning to remove plaque and stains." />
-          <ServiceCard image={svc[1]} title="Dental Implants" desc="Reliable implants to restore your bite and confidence." />
-          <ServiceCard image={svc[2]} title="Cosmetic Dentistry" desc="Whitening, veneers, and shaping for a perfect smile." />
-          <ServiceCard image={svc[3]} title="Emergency Care" desc="Immediate relief for sudden tooth pain or injury." />
-          <ServiceCard image={svc[4]} title="Kids Dentistry" desc="Gentle, caring dentistry for your child's smile." />
-          <ServiceCard image={svc[5]} title="Dental Veneers" desc="Custom veneers to fix gaps and discoloration." />
-        </div>
-      </section>
-
-      {/* TESTIMONIAL — "The Honest Review From Our Client" (spec 1:419) */}
-      <section className="mx-auto w-[1240px] py-[80px]">
-        <div className="px-[60px]">
-          <SectionHeader
-            label="Our Testimonial"
-            title="The Honest Review
- From Our Client"
-            align="left"
-          />
-        </div>
-        <div className="mt-[40px] flex gap-[40px] px-[60px]">
-          <TestimonialCard
-            quote="The team here is incredible. My kids love visiting the dentist now!"
-            name="Sarah Johnson"
-            role="Patient"
-          />
-          <TestimonialCard
-            quote="Top-tier care and the technology is amazing. I finally have the smile I wanted."
-            name="Michael Chen"
-            role="Patient"
-          />
-        </div>
-
-        {/* booking card (spec 1:466) */}
-        <div className="mt-[40px] mx-[60px] rounded-[4px] border border-[#eeeeee] bg-white p-[32px] shadow-[0_20px_40px_#003cb321]">
-          <div className="flex items-end gap-[24px]">
-            <div className="w-[257px]">
-              <label className="mb-[8px] block font-manrope text-[16px] font-extrabold leading-[16px] text-dark">
-                Email Address
-              </label>
-              <input className="h-[48px] w-full rounded-[4px] border border-input bg-white px-[16px] font-archivo text-[16px] text-secondary" placeholder="you@example.com" />
-            </div>
-            <div className="w-[257px]">
-              <label className="mb-[8px] block font-manrope text-[16px] font-extrabold leading-[16px] text-dark">
-                Phone Number
-              </label>
-              <input type="tel" className="h-[48px] w-full rounded-[4px] border border-input bg-white px-[16px] font-archivo text-[16px] text-secondary" placeholder="(555) 000-0000" />
-            </div>
-            <div className="w-[268px]">
-              <label className="mb-[8px] block font-manrope text-[16px] font-extrabold leading-[16px] text-dark">
-                Date
-              </label>
-              <input type="date" className="h-[48px] w-full rounded-[4px] border border-input bg-white px-[16px] font-archivo text-[16px] text-secondary" />
-            </div>
-            <Button variant="primary" className="h-[54px] w-[163px]">
-              Book Now
-            </Button>
+          <div className="col-span-2 grid grid-cols-2 gap-3 md:col-span-1 md:block md:space-y-5">
+            {[
+              { image: "testimonial-saron.png", quote: "I was very afraid of the dentist. The team was kind and told me everything first. It did not hurt at all.", name: "Saron K.", treatment: "Root Canal Treatment" },
+              { image: "testimonial-daniel.png", quote: "My teeth look straight and clean now. The staff was friendly and the clinic is very clean.", name: "Daniel T.", treatment: "Braces Treatment" },
+            ].map((item) => (
+              <article key={item.name} className="grid min-h-[210px] overflow-hidden rounded-[4px] bg-white shadow-[0_4px_16px_rgba(0,60,179,0.13)] md:grid-cols-[1fr_180px]">
+                <div className="p-3 md:p-6 lg:p-8">
+                  <p className="font-archivo text-[13px] italic leading-[20px] text-secondary md:text-[16px] md:leading-[27px]">“{item.quote}”</p>
+                  <p className="mt-4 font-manrope text-[15px] font-bold md:mt-5 md:text-[18px]">{item.name}</p>
+                  <p className="mt-1 font-archivo text-[11px] text-secondary md:text-[13px]">{item.treatment}</p>
+                </div>
+                <img src={`${asset}${item.image}`} alt={item.name} className="hidden h-full min-h-[210px] w-full object-cover md:block" />
+              </article>
+            ))}
           </div>
-        </div>
-      </section>
+          <div className="col-span-2 md:hidden"><ActionLink href="#appointment">Book Appointment</ActionLink></div>
+        </section>
 
-      {/* BLOGS — "Blogs & Articles" (spec 1:361) */}
-      <section className="mx-auto w-[1240px] py-[80px]">
-        <div className="px-[60px]">
-          <SectionHeader
-            label="Our Blogs"
-            title="Blogs & Articles"
-            subtitle="Tips, news, and insights from our dental experts."
-            align="left"
-          />
-        </div>
-        <div className="mt-[40px] flex gap-[40px] px-[60px]">
-          <BlogCard image={blog[0]} title="5 Ways to Keep Your Smile Healthy" excerpt="Daily habits that protect your teeth and gums for life." date={"12\nOct"} />
-          <BlogCard image={blog[1]} title="Everything About Dental Implants" excerpt="Understanding implants, the procedure, and recovery." date={"08\nOct"} />
-          <BlogCard image={blog[2]} title="Whitening vs. Veneers" excerpt="Which cosmetic option is right for your goals." date={"03\nOct"} />
-        </div>
-      </section>
+        <section className="relative overflow-hidden bg-[#f1f8ff]"><div className="mx-auto grid min-h-[570px] max-w-[1240px] items-center gap-8 px-5 py-16 sm:px-8 md:grid-cols-2 lg:min-h-[630px] lg:px-0 lg:py-0"><div className="relative z-10 max-w-[470px]"><h2 className="font-manrope text-[38px] font-extrabold leading-[1.12] sm:text-[48px] lg:text-[52px]">Let Us Take Care of Your Smile</h2><p className="mt-6 font-archivo text-[16px] leading-[25.6px] text-secondary">Our dentist will check your teeth and explain your choices in simple words. We take our time, answer all your questions, and make sure you feel calm and comfortable. Call us today to book your visit.</p><div className="mt-8"><ActionLink href="#contact">Contact Us</ActionLink></div></div><div className="relative mx-auto h-[360px] w-full max-w-[560px] [clip-path:polygon(15%_0,100%_0,100%_100%,0_100%)] sm:h-[470px] lg:h-[630px]"><img src={`${asset}smile-visit.png`} alt="Dentist caring for a patient" className="absolute inset-0 h-full w-full object-cover" /></div></div></section>
 
-      {/* CONTACT — image-bg #F1F8FF, "Become The Next Our Happy Client" (spec 1:404) */}
-      <section className="mx-auto my-[80px] h-[792px] w-[1240px] overflow-hidden rounded-[12px] border border-[#eeeeee] bg-[#f1f8ff]">
-        <div className="grid h-full w-full grid-cols-2">
-          <div className="relative w-[485px] bg-[#3267FF]">
-            <img src="/figma/contact-dentist.png" alt="Dentist" className="h-[536px] w-[485px] object-cover opacity-90" />
-            <img src="/figma/contact-circle.png" alt="" className="absolute left-1/2 top-1/2 h-[280px] w-[465px] -translate-x-1/2 -translate-y-1/2 object-cover opacity-90" />
-          </div>
-          <div className="p-[80px] pl-[60px]">
-            <span className="mb-[20px] inline-flex h-[36px] items-center rounded-[4px] border border-[#98b3ff] px-[16px] font-manrope text-[14px] font-bold leading-[22.4px] text-brand">
-              Contact Us
-            </span>
-            <h2 className="mt-[20px] font-manrope text-[52px] font-extrabold leading-[57.2px] tracking-[-1.5px] text-dark">
-              Become The Next<br />Our Happy Client
-            </h2>
-            <p className="mt-[24px] font-archivo text-[16px] leading-[25.6px] text-secondary">
-              Fill the form and we'll get back to you shortly.
-            </p>
-            <form className="mt-[32px] space-y-[24px]">
-              <div className="grid grid-cols-2 gap-[24px]">
-                <input className="h-[48px] rounded-[4px] border border-input bg-white px-[16px] font-archivo text-[16px] text-secondary" placeholder="Full Name" />
-                <input className="h-[48px] rounded-[4px] border border-input bg-white px-[16px] font-archivo text-[16px] text-secondary" placeholder="Email Address" />
-              </div>
-              <div className="grid grid-cols-2 gap-[24px]">
-                <input type="tel" className="h-[48px] rounded-[4px] border border-input bg-white px-[16px] font-archivo text-[16px] text-secondary" placeholder="Phone Number" />
-                <input className="h-[48px] rounded-[4px] border border-input bg-white px-[16px] font-archivo text-[16px] text-secondary" placeholder="Subject" />
-              </div>
-              <textarea className="h-[120px] w-full resize-none rounded-[4px] border border-input bg-white px-[16px] py-[16px] font-archivo text-[16px] text-secondary" placeholder="Your message"></textarea>
-              <Button variant="primary" className="w-[230px]">
-                Send Message
-              </Button>
-            </form>
-          </div>
-        </div>
-      </section>
+        <section className="mx-auto max-w-[1240px] px-5 py-16 sm:px-8 lg:px-0 lg:py-24"><h2 className="mx-auto max-w-[600px] text-center font-manrope text-[36px] font-extrabold leading-tight sm:text-[48px] lg:text-[52px]">Quick Answers to Common Questions</h2><div className="mt-12 grid gap-8 md:grid-cols-3">{articles.map((article) => <article key={article.category}><div className="relative h-[250px] overflow-hidden rounded-[4px] sm:h-[300px]"><img src={`${asset}${article.image}`} alt="" className="absolute inset-0 h-full w-full object-cover" /><span className="absolute bottom-0 left-0 rounded-tr-[4px] bg-white px-4 py-2 font-manrope text-[14px] font-bold text-brand">{article.category}</span></div><h3 className="mt-5 font-manrope text-[20px] font-bold leading-[26px]">{article.title}</h3><p className="mt-3 font-archivo text-[15px] leading-[24px] text-secondary">{article.copy}</p><Link href="#appointment" className="mt-5 inline-flex min-h-11 items-center rounded-[4px] bg-brand px-5 font-manrope text-[14px] font-bold text-white hover:bg-[#1644ef]">Book A Visit <span aria-hidden="true" className="ml-3">→</span></Link></article>)}</div></section>
 
+        <section id="contact" className="relative isolate mx-auto my-8 grid max-w-[1240px] overflow-visible bg-[#f1f8ff] px-5 py-12 sm:px-10 md:grid-cols-2 lg:my-16 lg:min-h-[440px] lg:px-[50px] lg:py-14"><div className="relative z-20 max-w-[440px] self-center"><h2 className="font-manrope text-[38px] font-extrabold leading-[1.12] sm:text-[48px] lg:text-[52px]">Contact Us</h2><p className="mt-4 font-archivo text-[16px] font-bold leading-[25.6px] text-secondary">Location:</p><p className="pl-[46px] font-archivo text-[16px] leading-[25.6px] text-secondary">Bole, Getu Commercial Center 3rd Floor</p><a href={`https://www.google.com/maps/dir/?api=1&destination=${clinicMapSearch}`} target="_blank" rel="noreferrer" className="ml-[46px] mt-1 inline-flex font-manrope text-[14px] font-bold text-brand hover:text-[#1644ef]">Get Directions <span aria-hidden="true" className="ml-2">↗</span></a><div className="mt-4 h-[180px] w-full overflow-hidden rounded-[4px] border border-[#e4ebff]"><iframe title="Map to Dr Euel Lewi Speciality Dental Clinic" src={`https://www.google.com/maps?q=${clinicMapSearch}&output=embed`} className="h-full w-full border-0" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div><p className="mt-3 font-archivo text-[16px] font-bold leading-[25.6px] text-secondary">Open Hours:</p><p className="pl-[46px] font-archivo text-[16px] leading-[25.6px] text-secondary">Mon-Sat: 8AM - 8PM<br />Sun: 9AM - 5PM</p><div className="mt-7 flex flex-wrap gap-3"><ActionLink href="#appointment">Book an Appointment</ActionLink><a href="tel:+251910363238" className="inline-flex min-h-[52px] items-center justify-center rounded-[4px] bg-[#1644ef] px-7 font-manrope text-[15px] font-bold text-white">Call Us</a></div></div><div className="relative mt-8 min-h-[300px] md:mt-0 lg:absolute lg:inset-y-0 lg:right-[50px] lg:h-full lg:min-h-0 lg:w-[570px]"><img src={`${asset}hero-circle.png`} alt="" className="absolute bottom-[2%] left-0 z-10 w-full object-contain lg:bottom-[12px] lg:left-[102px] lg:w-[465px]" /><img src={`${asset}contact-dentist.png`} alt="Dentist holding a dental model" className="absolute bottom-[-8%] left-1/2 z-0 h-[112%] max-w-full -translate-x-1/2 object-contain object-bottom lg:bottom-auto lg:left-[50px] lg:top-[-96px] lg:h-[536px] lg:w-[485px] lg:max-w-none lg:translate-x-0" /></div></section>
+        <WhatsAppAppointmentForm id="contact-appointment" className="mx-auto my-16 grid w-[calc(100%-2.5rem)] max-w-[1220px] gap-4 rounded-[4px] bg-white p-5 shadow-[0_4px_20px_rgba(0,60,179,0.14)] sm:px-7 md:grid-cols-[repeat(3,minmax(0,1fr))_auto] md:items-end">
+          <h2 className="font-manrope text-[18px] font-bold leading-6 md:col-span-full">Book An Appointment Right Now</h2>
+          <label className="font-manrope text-[12px] font-bold">Your Name<input name="contact-name" autoComplete="name" className="mt-2 h-12 w-full rounded-[4px] border border-input px-4 font-archivo text-[14px] font-normal" placeholder="e.g. Abebech" /></label>
+          <label className="font-manrope text-[12px] font-bold">Phone Number<input name="contact-phone" type="tel" autoComplete="tel" className="mt-2 h-12 w-full rounded-[4px] border border-input px-4 font-archivo text-[14px] font-normal" placeholder="e.g. 0912 345 678" /></label>
+          <label className="font-manrope text-[12px] font-bold">Date<input name="contact-date" type="date" className="mt-2 h-12 w-full rounded-[4px] border border-input px-4 font-archivo text-[14px] font-normal" /></label>
+          <label className="font-manrope text-[12px] font-bold md:col-span-full">Your Symptoms<textarea name="symptoms" rows={4} className="mt-2 min-h-[112px] w-full resize-y rounded-[4px] border border-input px-4 py-3 font-archivo text-[14px] font-normal" placeholder="Describe your symptoms or reason for visit" /></label>
+          <button type="submit" className="min-h-12 rounded-[4px] bg-brand px-6 font-manrope text-[14px] font-bold text-white hover:bg-[#1644ef] md:col-start-4 md:justify-self-end">Book Now</button>
+        </WhatsAppAppointmentForm>
+      </main>
       <Footer />
     </div>
   );

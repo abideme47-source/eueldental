@@ -2,14 +2,10 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #000000;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: #000a2d;
+  --font-manrope: "Manrope", "Segoe UI", sans-serif;
+  --font-archivo: "Archivo", "Segoe UI", sans-serif;
+  --font-baskervville: "Baskervville", Georgia, serif;
 }
 
 html,
@@ -47,6 +43,9 @@ h6,
 }
 .font-archivo {
   font-family: var(--font-archivo), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.font-baskervville {
+  font-family: var(--font-baskervville), Georgia, serif;
 }
 
 /* Exact Figma color tokens reused across the page. */

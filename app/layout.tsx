@@ -1,28 +1,16 @@
 import type { Metadata } from "next";
-import { Manrope, Archivo } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-});
-const archivo = Archivo({
-  variable: "--font-archivo",
-  subsets: ["latin"],
-  weight: ["400"],
-});
-
 export const metadata: Metadata = {
-  title: "DentalCare | Modern Dentistry",
-  description: "Built from a Figma design",
+  title: "Dr Euel Lewi | Speciality Dental Clinic",
+  description: "Gentle, modern dental care for patients of all ages in Bole, Addis Ababa.",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${archivo.variable}`}>
+    <html lang="en">
       <body className="min-h-screen">{children}</body>
     </html>
   );
